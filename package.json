@@ -8,7 +8,7 @@
     "server": "python -m SimpleHTTPServer 8000",
     "init": "npm install && bower install && gulp build && npm run server"
   },
-  "author": "",
+  "author": "Mike Spencer",
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.8.11",
