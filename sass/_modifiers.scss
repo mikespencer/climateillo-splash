@@ -1,0 +1,31 @@
+/** Modifiers **/
+
+.big-margin-bottom {
+  margin-bottom: 40px;
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.hide-text {
+  text-indent: -9999px;
+}
+
+.text-shadow {
+  text-shadow: 0px 1px 5px #666;
+}
+
+.caps {
+  text-transform: uppercase;
+}
+
+.italic {
+  font-style: italic;
+}
+
+input.error {
+  color: red !important;
+  border-color: red !important;
+  background: pink !important;
+}

@@ -1,0 +1,47 @@
+/** Larger screen overrides **/
+
+@media (min-width: $breakpointLarge) {
+
+  body {
+    background-size: cover;
+    background-position: center 5%;
+    font-size: 20px;
+  }
+
+  .branding {
+    top: 30px;
+    left: 30px;
+    width: 220px;
+  }
+
+  .content {
+    top: 30%;
+    h2 {
+      font-size: 24px;
+    }
+  }
+
+  .signup-cover-inner {
+    margin-top: 120px;
+  }
+
+  .social-container {
+    font-size: 48px;
+  }
+
+}
+
+@media (min-width: $breakpointExtraLarge){
+  body {
+    background-position: center 15%;
+    font-size: 24px;
+  }
+  .content {
+    h2 {
+      font-size: 32px;
+    }
+  }
+  .social-container {
+    font-size: 62px;
+  }
+}

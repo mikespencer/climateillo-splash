@@ -1,0 +1,3 @@
+# Setup
+
+`npm run init`

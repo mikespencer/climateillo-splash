@@ -6,13 +6,12 @@
   var climateIllo = {
 
     init: function(){
-      this.$signupBtn = $("#signup-btn");
-      this.$cover = $("#signup-cover");
+      this.$signupBtn = $(".signup-btn");
+      this.$cover = $(".signup-cover");
       this.$coverCloseBtn = this.$cover.find(".close");
-
-      this.$form = $("#signup-form");
-      this.$emailInput = this.$form.find("input[name='email']");
-      this.$submitBtn = $("#signup-form-submit");
+      this.$form = $(".signup-form");
+      this.$emailInput = this.$form.find(".email");
+      this.$submitBtn = $(".signup-form-submit");
 
       this.bindEvents();
     },
@@ -30,14 +29,20 @@
         self.hideOverlay();
       });
 
-      this.$form.on("submit", function(e){
-        return self.submitHandler();
+      this.$form.on("submit", function(){
+        self.submitHandler();
+        //submitted via AJAX
+        return false;
       });
     },
 
     showOverlay: function(){
-      this.$cover.fadeIn({
-        duration: FADE_DURATION
+      var self = this;
+      this.$cover.removeClass("success").fadeIn({
+        duration: FADE_DURATION,
+        complete: function(){
+          self.$emailInput.focus();
+        }
       });
     },
 
@@ -48,22 +53,51 @@
     },
 
     submitHandler: function(){
+
+      //AJAX in progress
+      if(this.active){return;}
+
       var self = this;
       var email = this.$emailInput.val();
 
-      console.log("email:", email);
-      console.log("valid:", this.validateEmail(email));
-
       if(this.validateEmail(email)){
+        var data = {};
+        data[ this.$emailInput.attr("name") ] = this.$emailInput.val();
+
         this.$emailInput.removeClass("error");
-        return true;
+
+        // AJAX seems to "fail", even though the signup is successful. No `done`, `fail`, or `always`
+        // is ever triggered. Need to fix this, but for now, always assume the POST is successful
+        // and call success function.
+        $.ajax({
+          url: this.$form.attr("action") + "?callback=?",
+          method: "POST",
+          data: data,
+          crossDomain: true,
+          dataType: 'jsonp'
+        });
+        this.submitSuccess();
       } else {
         this.$emailInput.addClass("error").on("input", function(){
           self.$emailInput.off("input").removeClass("error");
         });
-        return false;
       }
+    },
 
+    submitSuccess: function(){
+      var self = this;
+      var oldVal = this.$submitBtn.val();
+
+      this.$submitBtn.val("Sending...");
+      this.active = true;
+
+      // Fix this when AJAX response issue is fixed, but for now give it a second to go through...
+      setTimeout(function(){
+        self.active = false;
+        self.$cover.addClass("success");
+        self.$emailInput.val("");
+        self.$submitBtn.val(oldVal);
+      }, 1000);
     },
 
     validateEmail: function (email) {
