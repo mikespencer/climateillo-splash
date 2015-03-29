@@ -31,6 +31,7 @@
 
       this.$form.on("submit", function(){
         self.submitHandler();
+
         //submitted via AJAX
         return false;
       });
