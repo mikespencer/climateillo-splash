@@ -74,7 +74,7 @@
           method: "POST",
           data: data,
           crossDomain: true,
-          dataType: 'jsonp'
+          dataType: "jsonp"
         });
         this.submitSuccess();
       } else {
@@ -108,6 +108,6 @@
 
   $(function(){
     climateIllo.init();
-  })
+  });
 
 })(jQuery);
