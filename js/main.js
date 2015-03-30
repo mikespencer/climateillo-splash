@@ -79,8 +79,8 @@
         });
         this.submitSuccess();
       } else {
-        this.$emailInput.addClass("error").on("input", function(){
-          self.$emailInput.off("input").removeClass("error");
+        this.$emailInput.addClass("error").one("input", function(){
+          self.$emailInput.removeClass("error");
         });
       }
     },
@@ -102,7 +102,7 @@
     },
 
     validateEmail: function (email) {
-      return /^.+@.+\..+$/.test(email);
+      return (/^.+@.+\..+$/).test(email);
     }
 
   };
