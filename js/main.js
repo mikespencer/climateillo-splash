@@ -10,7 +10,7 @@
       this.$cover = $(".signup-cover");
       this.$coverCloseBtn = this.$cover.find(".close");
       this.$form = $(".signup-form");
-      this.$emailInput = this.$form.find(".email");
+      this.$emailInput = this.$form.find("[type='email']");
       this.$submitBtn = $(".signup-form-submit");
 
       this.bindEvents();
