@@ -1,2 +1,4 @@
 User-agent: *
 Disallow: /blog/
+
+Sitemap: http://climateillo.com/sitemap.xml
